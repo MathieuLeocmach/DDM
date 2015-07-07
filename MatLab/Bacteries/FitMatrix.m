@@ -36,10 +36,10 @@ for Qinter =1:ImageSize/2-1
     ub=[(max(DDMCropped(:,Qinter))-min(DDMCropped(:,Qinter)))*1.2, min(DDMCropped(:,Qinter))*1.2, 1000, 1, 1000, 500];
     
     %% Fit DDMCropped by D
-    Params(Qinter, 2:7) = lsqcurvefit(FitBacterie,x0,dtCropped,log(DDMCropped(:,Qinter)'),lb,ub);    
+    Params(Qinter, 2:7) = lsqcurvefit(LogDDM,x0,dtCropped,log(DDMCropped(:,Qinter)'),lb,ub);    
     Params(Qinter, 1) = qs(Qinter);
 
-    MatrixFit(Qinter,:) = exp(FitBacterie(Params(Qinter,2:end),dtCropped));
+    MatrixFit(Qinter,:) = exp(LogDDM(Params(Qinter,2:end),dtCropped));
 end;
 
 save([EmplacementData,'Variables.mat'], 'NbImage', 'ImageSize', 'Frequency', 'PixelSize', 'qs', 'dtMerge', 'dtCropped', 'DDMMerge', 'DDMCropped', 'MatrixFit','Params')
