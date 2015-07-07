@@ -30,7 +30,7 @@ Params = zeros(ImageSize/2-1, 7);
 for Qinter =1:ImageSize/2-1
 
     %% Initial guess for the fit
-    x0 = [max(DDMCropped(:,Qinter))-min(DDMCropped(:,Qinter)), min(DDMCropped(:,Qinter)), 1/(qs(Qinter).^2)*17e4, 0.5, 1/(10000*qs(Qinter)), 1];
+    x0 = [max(DDMCropped(:,Qinter))-min(DDMCropped(:,Qinter)), min(DDMCropped(:,Qinter)), 1/((qs(Qinter).^2)*17e4), 0.5, 1/(10000*qs(Qinter)), 1];
     %% lower and upper bounds for the fit
     lb=[(max(DDMCropped(:,Qinter))-min(DDMCropped(:,Qinter)))*0.8, min(DDMCropped(:,Qinter))*0.8, 0, 0, 0, -500];
     ub=[(max(DDMCropped(:,Qinter))-min(DDMCropped(:,Qinter)))*1.2, min(DDMCropped(:,Qinter))*1.2, 1000, 1, 1000, 500];
